@@ -1,2 +1,4 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>ProPals</h1>
+<h1>WorkBuddy</h1>
+<h1>Office On-The-Go</h1>
+<h1>GO!ffice</h1>
