@@ -2,10 +2,6 @@ import {base} from '$app/paths'
 
 import type { RequestHandler } from "@sveltejs/kit";
 
-interface TripController {
-    
-}
-
 export const GET: RequestHandler = async ({url}) => {
     // parse query string
     const type = url.searchParams.get('type')
@@ -13,7 +9,6 @@ export const GET: RequestHandler = async ({url}) => {
 
     switch (type) {
         case 'city':
-
 
     }
 

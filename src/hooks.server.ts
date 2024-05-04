@@ -1,11 +1,21 @@
+import prisma from '$lib/client';
 import userController from '$lib/user-controller'
 import { redirect } from '@sveltejs/kit';
 
 const DEBUG = true
 const unProtectedRoutes = ['/login', '/register'];
 
-export async function handle({ event, resolve }) {
+export async function handle({ event, resolve, locals }) {
     if (DEBUG) {
+        const user = await prisma.user.findFirst()
+        if (user !== null) {
+            event.locals.user = user
+            event.cookies.set("session", user.tokenSession!, {
+                sameSite: true,
+                maxAge: 9999,
+                path: '/'
+            })
+        }
         return resolve(event)
     }
     if (!unProtectedRoutes.includes(event.url.pathname)) {

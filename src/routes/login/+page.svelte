@@ -23,8 +23,8 @@
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({email, hashPassword})
         });
-      console.log(response);
-      if (!response.ok) {
+        if (!response.ok) {
+        console.log(response);
         console.error("Could not log in")
         throw new Error(`HTTP status: ${response.status}`);
       }

@@ -7,14 +7,14 @@ interface UserInput {
     email: string
     nombre: string
     apellido: string
-    segundoApellido: string
+    segundoApellido: string | null
     ciudadResidencia: string
     codigoEmpresa: string 
     hashPassword: string
 }
 
 interface LoginInput {
-    email: string,
+    email: string
     hashPassword: string
 }
 

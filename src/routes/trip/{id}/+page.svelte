@@ -28,7 +28,7 @@
   {#each users as user}
     <div class="user-card">
       <div class="user-photo">
-        <img src={user.photo} alt="Profile Photo">
+        <img src={user.photo} alt="profile avatar" >
       </div>
       <div class="user-name">{user.name}</div>
       <div class="user-hobbies">{user.hobbies.join(', ')}</div>
