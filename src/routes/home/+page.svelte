@@ -17,7 +17,7 @@
 
 <div class="container">
   <h1>Añadir Destino</h1>
-  <form on:submit|preventDefault={handleSubmit}>
+  <form method="POST">
     <div class="input-group">
       <label for="destination">Ciudad de Destino:</label>
       <input type="text" id="destination" bind:value={destinationCity}>

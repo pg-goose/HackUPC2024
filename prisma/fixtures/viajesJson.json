@@ -3,7 +3,6 @@
       "id": 101,
       "fechaInicio": "2024-05-01T00:00:00Z",
       "fechaFin": "2024-05-10T00:00:00Z",
-      "origen": "Barcelona",
       "destino": "Valencia",
       "userId": 1
     },
@@ -11,7 +10,6 @@
       "id": 102,
       "fechaInicio": "2024-06-15T00:00:00Z",
       "fechaFin": "2024-06-20T00:00:00Z",
-      "origen": "Madrid",
       "destino": "Granada",
       "userId": 2
     }
