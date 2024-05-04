@@ -1,31 +1,27 @@
-import { error, fail, redirect } from '@sveltejs/kit'
-import type { Action, Actions, PageServerLoad } from './$types'
-
-import { z } from 'zod';
+import { error } from '@sveltejs/kit';
+import type { Action, Actions } from './$types';
+import { z } from "zod";
 import userController from '$lib/user-controller';
 
-const RegisterFormSchema = z.object({
+
+const LoginFormSchema = z.object({
     email: z.string(),
-    nombre: z.string(),
-    apellido: z.string(),
-    segundoApellido: z.string(),
-    ciudadResidencia: z.string(),
-    codigoEmpresa: z.string(),
-    hashPassword: z.string(),
-  });
+    hashPassword: z.string()
+});
 
-
-const register: Action = async ({ request }) => {
+const login: Action = async ({request, cookies}) => {
     const data = await request.formData()
-    let validated = RegisterFormSchema.safeParse(data)
+    let validated = LoginFormSchema.safeParse(data);
     if (!validated.success) {
-        error(400, "invalid form data: " + validated.error)
+        error(400, "Invalid form data")
     }
-    const token = await userController.register(validated.data)
+    const token = await userController.login(validated.data)
     if (token === null) {
-        error(400, "This user already exists")
+        error(401, "Wrong user credentials")
     }
-    redirect(303, '/login')
+    cookies.set(
+        "session",
+        token,
+        { path: '/' }
+    )
 }
-
-export const actions: Actions = { register }

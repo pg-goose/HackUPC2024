@@ -2,11 +2,22 @@
   let destinationCity = '';
   let departureDate = '';
   let arrivalDate = '';
+
+  function handleSubmit() {
+    // Aquí podrías agregar la lógica para manejar el envío del formulario
+    console.log('Ciudad de destino:', destinationCity);
+    console.log('Fecha de salida:', departureDate);
+    console.log('Fecha de llegada:', arrivalDate);
+  }
 </script>
+
+<style>
+  /* Puedes agregar estilos adicionales según tus preferencias */
+</style>
 
 <div class="container">
   <h1>Añadir Destino</h1>
-  <form action="?/register" method="POST">
+  <form on:submit|preventDefault={handleSubmit}>
     <div class="input-group">
       <label for="destination">Ciudad de Destino:</label>
       <input type="text" id="destination" bind:value={destinationCity}>
