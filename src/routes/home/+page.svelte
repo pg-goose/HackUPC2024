@@ -2,45 +2,22 @@
   let destinationCity = '';
   let departureDate = '';
   let arrivalDate = '';
-
-  function handleDestinationChange(event) {
-    destinationCity = event.target.value;
-  }
-
-  function handleDepartureDateChange(event) {
-    departureDate = event.target.value;
-  }
-
-  function handleArrivalDateChange(event) {
-    arrivalDate = event.target.value;
-  }
-
-  function handleSubmit() {
-    // Aquí podrías agregar la lógica para manejar el envío del formulario
-    console.log('Ciudad de destino:', destinationCity);
-    console.log('Fecha de salida:', departureDate);
-    console.log('Fecha de llegada:', arrivalDate);
-  }
 </script>
-
-<style>
-  /* Puedes agregar estilos adicionales según tus preferencias */
-</style>
 
 <div class="container">
   <h1>Añadir Destino</h1>
-  <form on:submit|preventDefault={handleSubmit}>
+  <form action="?/register" method="POST">
     <div class="input-group">
       <label for="destination">Ciudad de Destino:</label>
-      <input type="text" id="destination" bind:value={destinationCity} on:input={handleDestinationChange}>
+      <input type="text" id="destination" bind:value={destinationCity}>
     </div>
     <div class="input-group">
       <label for="departure-date">Fecha de Salida:</label>
-      <input type="date" id="departure-date" bind:value={departureDate} on:change={handleDepartureDateChange}>
+      <input type="date" id="departure-date" bind:value={departureDate}>
     </div>
     <div class="input-group">
       <label for="arrival-date">Fecha de Llegada:</label>
-      <input type="date" id="arrival-date" bind:value={arrivalDate} on:change={handleArrivalDateChange}>
+      <input type="date" id="arrival-date" bind:value={arrivalDate}>
     </div>
     <button type="submit">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
