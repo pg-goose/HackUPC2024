@@ -17,5 +17,27 @@ model User {
   email String @unique
   nombre String
   apellido String
-  segundoApellido String
+  segundoApellido String?
+  ciudadResidencia String
+  hashPassword String
+  empresa Empresa @relation(fields: [codigoEmpresa], references: [codigo])
+  codigoEmpresa String
+  preferencias Preferencia[]
+  propuestasActivadas Boolean @default(true)
+  }
+
+model Empresa {
+  id Int @id @default(autoincrement())
+  nombre String
+  codigo String @unique
+  usuarios User[]
 }
+
+model Preferencia {
+  id Int @id @default(autoincrement())
+  tema String // Tema de la preferencia
+  estaSeleccionado Boolean @default(false) // Si el usuario ha seleccionado este tema
+  user  User     @relation(fields: [userId], references: [id])
+  userId Int
+}
+
