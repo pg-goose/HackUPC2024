@@ -2,7 +2,7 @@ import jsonPreferences from './fixtures/preferencesJson.json' with { type: 'json
 import jsonUsers from './fixtures/usersJson.json' with { type: 'json'}
 import jsonEmpresas from './fixtures/empresasJson.json' with { type: 'json'}
 import jsonViajes from './fixtures/viajesJson.json' with { type: 'json'}
-import prisma from './client'; // Import the prisma object from the appropriate module
+import prisma from '$lib/client'; // Import the prisma object from the appropriate module
 import { User } from '@prisma/client';
 
 export const seed = async () => {
