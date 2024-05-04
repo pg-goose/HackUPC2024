@@ -1,21 +1,46 @@
-<script>
+<script lang='ts'>
   let email = "";
   let password = "";
+  let hashPassword = "";
 
-  async function handleSubmit() {
-    // Perform the POST request to send the form data to the database
-    window.location.href = "/home";
+  async function hash() {
+    const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
+    const result = await crypto.subtle.digest(
+      'SHA-256',
+      encoder.encode(password)
+    )
+    hashPassword = decoder.decode(result)
+  }
+  $: hash()
+
+  async function submit() {
+    try {
+      const response = await fetch("/login", {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email, hashPassword})
+        });
+      if (response.ok) {
+        throw new Error(`HTTP status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error in submit: ", error)
+    }
   }
 </script>
 
 <div class="container">
-  <h2>Log In</h2>
-  <form action="?/login" method="post">
-    <input type="email" placeholder="Email" bind:value={email} />
-    <input type="password" placeholder="Password" bind:value={password} />
-    <button type="submit">Log In</button>
+  <h2>Iniciar sesión</h2>
+  <form>
+    <input type="email" placeholder="Correo electrónico" bind:value={email} />
+    <input type="password" placeholder="Contraseña" bind:value={password} />
+    <input type="hidden" placeholder="pass hash" bind:value={hashPassword} />
+    <button type="submit" on:submit|preventDefault={submit}>Iniciar sesión</button>
   </form>
-  <a href="/register">Don't have an account? Sign up here</a>
+  <a class="register" href="/register">¿No tienes cuenta? Regístrate aquí</a>
 </div>
 
 <style>
@@ -56,14 +81,14 @@
     background-color: #007acc;
   }
 
-  .register-link {
+  .register {
     margin-top: 10px;
     font-size: 14px;
     color: #0693e3;
     text-decoration: none;
   }
 
-  .register-link:hover {
+  .register:hover {
     text-decoration: underline;
   }
 </style>
