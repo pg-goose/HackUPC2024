@@ -3,35 +3,34 @@
   let password = "";
 
   async function handleSubmit() {
-    // Realiza la solicitud POST para enviar los datos del formulario a la base de datos
-    
+    // Perform the POST request to send the form data to the database
     window.location.href = "/home";
   }
 </script>
 
 <div class="container">
-  <h2>Iniciar sesión</h2>
+  <h2>Log In</h2>
   <form action="?/login" method="post">
-    <input type="email" placeholder="Correo electrónico" bind:value={email} />
-    <input type="password" placeholder="Contraseña" bind:value={password} />
-    <button type="submit">Iniciar sesión</button>
+    <input type="email" placeholder="Email" bind:value={email} />
+    <input type="password" placeholder="Password" bind:value={password} />
+    <button type="submit">Log In</button>
   </form>
-  <a href="/register">¿No tienes cuenta? Regístrate aquí</a>
+  <a href="/register">Don't have an account? Sign up here</a>
 </div>
 
 <style>
   .container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar horizontalmente */
-    justify-content: center; /* Centrar verticalmente */
-    height: 100vh; /* Altura completa de la ventana */
+    align-items: center; /* Horizontal center */
+    justify-content: center; /* Vertical center */
+    height: 100vh; /* Full height of viewport */
   }
 
   form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar horizontalmente */
+    align-items: center; /* Horizontal center */
     width: 300px;
   }
 
