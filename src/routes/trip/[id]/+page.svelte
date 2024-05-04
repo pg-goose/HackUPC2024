@@ -3,18 +3,21 @@
   let departureDate = '2024-05-01';
   let returnDate = '2024-05-10';
 
+  
+  const profilePhoto = '/static/coquette.png'; 
+
   const users = [
     {
       name: 'Jane Doe',
-      photo: '/static/coquette.png', // Ruta relativa a la carpeta pública
+      photo: profilePhoto,
       hobbies: ['Reading', 'Traveling']
     },
     {
       name: 'John Smith',
-      photo: '/static/coquette.png', // Ruta relativa a la carpeta pública
+      photo: profilePhoto,
       hobbies: ['Photography', 'Cooking']
     },
-    // Add more users as needed
+    // Puedes agregar más usuarios según sea necesario
   ];
 </script>
 
