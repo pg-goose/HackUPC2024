@@ -47,6 +47,5 @@ model Empresa {
 model Preferencia {
   id Int @id @default(autoincrement())
   tema String // Tema de la preferencia
-  estaSeleccionado Boolean @default(false) // Si el usuario ha seleccionado este tema
   User User[]
 }

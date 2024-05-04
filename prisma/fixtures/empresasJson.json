@@ -1,0 +1,12 @@
+[
+    {
+      "id": 1,
+      "nombre": "Empresa A",
+      "codigo": "E001"
+    },
+    {
+      "id": 2,
+      "nombre": "Empresa B",
+      "codigo": "E002"
+    }
+]
