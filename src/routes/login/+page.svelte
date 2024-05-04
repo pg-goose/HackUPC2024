@@ -54,15 +54,15 @@
   .container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar horizontalmente */
-    justify-content: center; /* Centrar verticalmente */
-    height: 100vh; /* Altura completa de la ventana */
+    align-items: center; /* Horizontal center */
+    justify-content: center; /* Vertical center */
+    height: 100vh; /* Full height of viewport */
   }
 
   form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar horizontalmente */
+    align-items: center; /* Horizontal center */
     width: 300px;
   }
 
