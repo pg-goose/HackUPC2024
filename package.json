@@ -3,12 +3,19 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
+<<<<<<< HEAD
 		"dev": "npm run start:server && vite dev",
 		"start:server": "node src/server.cjs &",
+=======
+		"dev": "npx prisma db push && tsx prisma/seed.ts && vite dev",
+>>>>>>> fbc36e0b5dd673278af5adbd0f105586ee2a86f1
 		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"prisma": {
+		"seed": "tsx prisma/seed.ts"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
@@ -20,8 +27,10 @@
 		"prisma": "^5.13.0",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
+		"ts-node": "^10.9.2",
 		"tslib": "^2.4.1",
-		"typescript": "^5.0.0",
+		"tsx": "^4.9.0",
+		"typescript": "^5.4.5",
 		"vite": "^5.0.3"
 	},
 	"type": "module",
@@ -29,6 +38,7 @@
 		"@picocss/pico": "^2.0.6",
 		"@prisma/client": "^5.13.0",
 		"cors": "^2.8.5",
-		"express": "^4.19.2"
+		"express": "^4.19.2",
+		"zod": "^3.23.6"
 	}
 }

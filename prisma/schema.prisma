@@ -18,20 +18,24 @@ model User {
   nombre String
   apellido String
   segundoApellido String?
+
   ciudadResidencia String
   hashPassword String
+  
   empresa Empresa @relation(fields: [codigoEmpresa], references: [codigo])
   codigoEmpresa String
+  
   preferencias Preferencia[]
   propuestasActivadas Boolean @default(true)
   viajes Viaje[]
+
+  tokenSession String?
 }
 
 model Viaje {
   id Int @id @default(autoincrement())
   fechaInicio DateTime
   fechaFin DateTime
-  origen String?
   destino String
   user User @relation(fields: [userId], references: [id])
   userId Int
@@ -47,6 +51,5 @@ model Empresa {
 model Preferencia {
   id Int @id @default(autoincrement())
   tema String // Tema de la preferencia
-  estaSeleccionado Boolean @default(false) // Si el usuario ha seleccionado este tema
   User User[]
 }
