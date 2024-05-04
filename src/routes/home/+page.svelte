@@ -1,30 +1,50 @@
-<script>
-  let destinationCity = '';
-  let departureDate = '';
-  let arrivalDate = '';
+<script lang='ts'>
+  import { redirect } from "@sveltejs/kit";
+  let destino: String
+  let fechaInicio: Date
+  let fechaFin: Date
 
-  function handleSubmit() {
-    // Aquí podrías agregar la lógica para manejar el envío del formulario
-    console.log('Destination City:', destinationCity);
-    console.log('Departure Date:', departureDate);
-    console.log('Arrival Date:', arrivalDate);
+  async function createViaje(event: SubmitEvent) {
+    //let fechaInicio2 = new Date(fechaInicio)
+    //let fechaFin2 = new Date(fechaFin)
+    try {
+      console.log(typeof(fechaInicio));
+      const response = await fetch("/home", {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({destino, fechaInicio, fechaFin})
+        });
+      if (!response.ok) {
+        console.error("Could not log in")
+        throw new Error(`HTTP status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+      
+    } catch (error) {
+      console.error("Error in submit: ", error)
+      return
+    }
+    window.location.href = '/home';
   }
+
+
 </script>
 
 <div class="container">
-  <h1>Add Trip</h1>
-  <form on:submit|preventDefault={handleSubmit}>
+  <h1>Añadir Destino</h1>
+  <form on:submit|preventDefault={createViaje} method="POST">
     <div class="input-group">
-      <label for="destination">Destination:</label>
-      <input type="text" id="destination" placeholder="Destination" bind:value={destinationCity}>
+      <label for="destination">Ciudad de Destino:</label>
+      <input type="text" id="destination" bind:value={destino}>
     </div>
     <div class="input-group">
-      <label for="departure-date">Departure Date:</label>
-      <input type="date" id="departure-date" bind:value={departureDate}>
+      <label for="departure-date">Fecha de Salida:</label>
+      <input type="date" id="departure-date" bind:value={fechaInicio}>
     </div>
     <div class="input-group">
-      <label for="arrival-date">Arrival Date:</label>
-      <input type="date" id="arrival-date" bind:value={arrivalDate}>
+      <label for="arrival-date">Fecha de Llegada:</label>
+      <input type="date" id="arrival-date" bind:value={fechaFin}>
     </div>
     <button type="submit">Add Trip</button>
   </form>

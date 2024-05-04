@@ -48,10 +48,24 @@ class UserController {
     async session(session: string): Promise<User | null> {
         const user = await prisma.user.findFirst({
             where: {
-                tokenSession: session
+                tokenSession: session,
             }
         })
         return user
+    }
+
+    async userByCity(value: string): Promise<User[]|null> {
+        const users = prisma.user.findMany({
+            where: {
+                ciudadResidencia: value
+            },
+            orderBy: { // ordenamos por NUMERO de preferencias
+                preferencias: {
+                    _count: 'desc'
+                }
+            }
+        })
+        return users
     }
 }
 

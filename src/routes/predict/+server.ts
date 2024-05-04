@@ -9,7 +9,7 @@ export const GET: RequestHandler = async ({url}) => {
 
     switch (type) {
         case 'city':
-
+            
     }
 
     return new Response();
