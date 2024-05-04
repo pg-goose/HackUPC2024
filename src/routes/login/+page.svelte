@@ -33,8 +33,9 @@
       
     } catch (error) {
       console.error("Error in submit: ", error)
+      return
     }
-    redirect(302, '/home')
+    window.location.href = '/home';
   }
 </script>
 
