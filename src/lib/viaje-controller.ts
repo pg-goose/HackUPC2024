@@ -4,16 +4,18 @@ import { error, fail } from '@sveltejs/kit';
 
 interface ViajeInput {
     destino: string
-    fechaInicio: string
-    fechaFin: string
+    fechaInicio: Date
+    fechaFin: Date
 }
+
 
 class ViajeController {
     async createViaje(validatedData: ViajeInput, userId: any): Promise<Viaje | null> {
         try {
-            const newViaje = await prisma.viaje.create({ data: {...validatedData, user:userId} })
+            const newViaje = await prisma.viaje.create({ data: { destino: validatedData.destino, fechaInicio: new Date(validatedData.fechaInicio), fechaFin: new Date(validatedData.fechaFin) , user:{ connect: { id : userId }  } } })
             return newViaje
         } catch(err) {
+            console.log(err)
             error(500, "invalid data used for viaje creation")
         }
     }
