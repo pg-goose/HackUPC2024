@@ -31,7 +31,7 @@
 
 </script>
 
-<div class="container">
+<div class="newtrip">
   <h1>Añadir Destino</h1>
   <form on:submit|preventDefault={createViaje} method="POST">
     <div class="input-group">
@@ -75,76 +75,96 @@
 
 <style>
   /* Puedes agregar estilos adicionales según tus preferencias */
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrar horizontalmente */
-    background-color: #0693e3; /* Color de fondo azul */
-    padding: 20px;
-  }
+  /* Estilos globales */
+  :global(html, body) {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Evitar desbordamiento horizontal */
+}
+/* Estilos para el contenedor principal */
+.newtrip {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
+  background-color: #0693e3; /* Color de fondo azul */
+  width: 100%; /* Ocupar el ancho total de la pantalla */
+  padding: 20px; /* Espaciado interno */
+  margin: 0; /* Eliminar márgenes */
+}
 
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrar horizontalmente */
-    width: 300px;
-  }
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
+  width: 100%; /* Ocupar el ancho total del contenedor */
+  max-width: 500px; /* Ancho máximo para dispositivos más grandes */
+}
 
-  .input-group {
-    margin-bottom: 10px;
-  }
+.input-group {
+  margin-bottom: 10px;
+  width: 100%; /* Ocupar el ancho total del formulario */
+}
 
-  label {
-    margin-bottom: 5px;
-    color: white; /* Color de texto blanco */
-  }
+label {
+  margin-bottom: 5px;
+  color: white; /* Color de texto blanco */
+}
 
-  input[type="text"],
-  input[type="date"] {
-    padding: 8px;
-    width: 250px; /* Ajustar el ancho de los campos de entrada */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+input[type="text"],
+input[type="date"] {
+  padding: 8px;
+  width: 100%; /* Ocupar el ancho total del grupo de entrada */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-  button {
-    padding: 10px 20px;
-    background-color: white; /* Fondo blanco para el botón */
-    color: #0693e3; /* Texto azul */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+button {
+  padding: 10px 20px;
+  background-color: white; /* Fondo blanco para el botón */
+  color: #0693e3; /* Texto azul */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 95%; /* Casi el ancho total del contenedor */
+  margin: 10px 0; /* Espaciado superior e inferior */
+}
 
-  button:hover {
-    background-color: #007acc; /* Color de fondo azul más oscuro al pasar el mouse */
-    color: white; /* Texto blanco al pasar el mouse */
-  }
+button:hover {
+  background-color: #007acc; /* Color de fondo azul más oscuro al pasar el mouse */
+  color: white; /* Cambiar el texto a blanco al pasar el mouse */
+}
 
-  /* Estilos para el menú de viajes */
-  .trips-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrar horizontalmente */
-    margin-top: 20px; /* Espacio superior */
-  }
+/* Estilos para el menú de viajes */
+.trips-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrar horizontalmente */
+  margin-top: 20px; /* Espacio superior */
+  width: 100%; /* Ocupar el ancho total de la pantalla */
+  
+}
 
-  .trip-bubble {
-    width: 300px;
-    height: 100px;
-    background-color: white; /* Fondo blanco */
-    border-radius: 10px;
-    margin-top: 10px; /* Espacio entre burbujas */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centrar contenido verticalmente */
-    align-items: center; /* Centrar contenido horizontalmente */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
-  }
+.trip-bubble {
+  width: 95%; /* Casi el ancho total de la pantalla */
+  background-color: white; /* Fondo blanco */
+  border-radius: 20px; /* Bordes más redondeados */
+  margin-top: 10px; /* Espacio entre burbujas */
+  display: flex;
+  justify-content: space-around; /* Distribuir contenido equitativamente */
+  align-items: center; /* Centrar contenido horizontalmente */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  padding: 10px; /* Espaciado interno */
+}
 
-  .trip-info {
-    text-align: center;
-    color: #0693e3; /* Texto azul */
-  }
+.trip-info {
+  margin: 0; /* Eliminar márgenes por defecto */
+  color: #0693e3; /* Texto azul */
+  font-size: 1rem; /* Tamaño de fuente estándar */
+}
+.trip-bubble:hover .trip-info {
+  color: white; /* Cambiar el texto a blanco al pasar el mouse sobre el botón */
+}
+
 </style>
