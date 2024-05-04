@@ -1,9 +1,13 @@
 import userController from '$lib/user-controller'
 import { redirect } from '@sveltejs/kit';
 
+const DEBUG = true
 const unProtectedRoutes = ['/login', '/register'];
 
 export async function handle({ event, resolve }) {
+    if (DEBUG) {
+        return resolve(event)
+    }
     if (!unProtectedRoutes.includes(event.url.pathname)) {
         // redirect to /login
         redirect(302, '/login')
