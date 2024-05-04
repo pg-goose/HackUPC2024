@@ -1,5 +1,5 @@
 import type { User } from '@prisma/client';
-import { prisma } from "$lib/client"
+import prisma from "$lib/client"
 import { error, fail } from '@sveltejs/kit';
 
 
@@ -13,11 +13,16 @@ interface UserInput {
     hashPassword: string
 }
 
+interface LoginInput {
+    email: string,
+    hashPassword: string
+}
+
 class UserController {
 
-    async login(email:string, hashPassword: string): Promise<string | null> {
+    async login(input: LoginInput): Promise<string | null> {
         const user = await prisma.user.findFirst({
-            where: { email, hashPassword }
+            where: { ...input }
         })
         if (!user) { 
             fail(401, { credentials: true })

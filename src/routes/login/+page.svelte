@@ -1,15 +1,23 @@
 <script>
-  let email = '';
-  let password = '';
+  let email = "";
+  let password = "";
 
   async function handleSubmit() {
     // Realiza la solicitud POST para enviar los datos del formulario a la base de datos
     
-    
-      window.location.href = '/home';
+    window.location.href = "/home";
   }
-    
 </script>
+
+<div class="container">
+  <h2>Iniciar sesión</h2>
+  <form action="?/login" method="post">
+    <input type="email" placeholder="Correo electrónico" bind:value={email} />
+    <input type="password" placeholder="Contraseña" bind:value={password} />
+    <button type="submit">Iniciar sesión</button>
+  </form>
+  <a href="/register">¿No tienes cuenta? Regístrate aquí</a>
+</div>
 
 <style>
   .container {
@@ -19,7 +27,7 @@
     justify-content: center; /* Centrar verticalmente */
     height: 100vh; /* Altura completa de la ventana */
   }
-  
+
   form {
     display: flex;
     flex-direction: column;
@@ -60,13 +68,3 @@
     text-decoration: underline;
   }
 </style>
-
-<div class="container">
-  <h2>Iniciar sesión</h2>
-  <form on:submit|preventDefault={handleSubmit}>
-    <input type="email" placeholder="Correo electrónico" bind:value={email}>
-    <input type="password" placeholder="Contraseña" bind:value={password}>
-    <button type="submit">Iniciar sesión</button>
-  </form>
-  <a href="/register">¿No tienes cuenta? Regístrate aquí</a>
-</div>
