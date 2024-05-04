@@ -3,7 +3,7 @@
   let password = "";
   let hashPassword = "";
 
-  async function hash(pass: string) {
+  async function hash() {
     const encoder = new TextEncoder();
     const decoder = new TextDecoder();
     const result = await crypto.subtle.digest(
@@ -12,20 +12,33 @@
     )
     hashPassword = decoder.decode(result)
   }
-  $: hash(password)
+  $: hash()
 
-  async function handleSubmit() {
-    window.location.href = "/home";
+  async function submit() {
+    try {
+      const response = await fetch("/login", {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email, hashPassword})
+        });
+      if (response.ok) {
+        throw new Error(`HTTP status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error in submit: ", error)
+    }
   }
 </script>
 
 <div class="container">
   <h2>Iniciar sesión</h2>
-  <form action="?/login" method="post">
+  <form>
     <input type="email" placeholder="Correo electrónico" bind:value={email} />
     <input type="password" placeholder="Contraseña" bind:value={password} />
     <input type="hidden" placeholder="pass hash" bind:value={hashPassword} />
-    <button type="submit">Iniciar sesión</button>
+    <button type="submit" on:submit|preventDefault={submit}>Iniciar sesión</button>
   </form>
   <a class="register" href="/register">¿No tienes cuenta? Regístrate aquí</a>
 </div>
