@@ -56,6 +56,8 @@ export const seed = async () => {
       create: viaje,
     })
   }
+
+
 }
 
 await seed() 

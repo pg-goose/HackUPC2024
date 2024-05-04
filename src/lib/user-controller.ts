@@ -29,7 +29,7 @@ class UserController {
         }
         const token = crypto.randomUUID()
         const authenticatedUser = await prisma.user.update({
-            where: { email: user?.email },
+            where: { email: input.email },
             data: { tokenSession: token },
         })
         return token
