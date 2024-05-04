@@ -18,13 +18,18 @@ model User {
   nombre String
   apellido String
   segundoApellido String?
+
   ciudadResidencia String
   hashPassword String
+  
   empresa Empresa @relation(fields: [codigoEmpresa], references: [codigo])
   codigoEmpresa String
+  
   preferencias Preferencia[]
   propuestasActivadas Boolean @default(true)
   viajes Viaje[]
+
+  tokenSession String?
 }
 
 model Viaje {
