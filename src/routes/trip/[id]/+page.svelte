@@ -1,37 +1,83 @@
 <script>
-  // You can change the city name and dates as needed
-  let destinationCity = 'City Name';
-  let departureDate = '05/01/2024';
-  let arrivalDate = '05/10/2024';
+  let destinationCity = 'Barcelona';
+  let departureDate = '2024-05-01';
+  let returnDate = '2024-05-10';
+
+  
+  const profilePhoto = '/static/coquette.png'; 
 
   const users = [
     {
-      name: 'User Name 1',
-      photo: 'path/photo1.jpg',
-      hobbies: ['Hobby 1', 'Hobby 2']
+      name: 'Jane Doe',
+      photo: profilePhoto,
+      hobbies: ['Reading', 'Traveling']
     },
     {
-      name: 'User Name 2',
-      photo: 'path/photo2.jpg',
-      hobbies: ['Hobby 3', 'Hobby 4']
+      name: 'John Smith',
+      photo: profilePhoto,
+      hobbies: ['Photography', 'Cooking']
     },
-    // You can add more users as needed
+    // Puedes agregar más usuarios según sea necesario
   ];
 </script>
 
+
 <div class="banner">
   <h2>{destinationCity}</h2>
-  <p>Departure: {departureDate} - Arrival: {arrivalDate}</p>
+  <p>Departure: {departureDate} | Return: {returnDate}</p>
 </div>
 
 <div class="users-container">
   {#each users as user}
-    <div class="user-card">
-      <div class="user-photo">
-        <img src={user.photo} alt="profile avatar" >
-      </div>
+  <div class="user-card">
+    <img class="user-photo" src={user.photo} alt={user.name + "'s profile avatar"} />
+    <div class="user-info">
       <div class="user-name">{user.name}</div>
       <div class="user-hobbies">{user.hobbies.join(', ')}</div>
     </div>
-  {/each}
+  </div>
+{/each}
 </div>
+
+<style>
+  .banner {
+    background-color: #0693e3;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .users-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .user-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 200px;
+    text-align: center;
+  }
+
+  .user-photo {
+    width: 100%;
+    height: auto;
+  }
+
+  .user-info {
+    padding: 10px;
+  }
+
+  .user-name {
+    font-weight: bold;
+  }
+
+  .user-hobbies {
+    color: #555;
+    font-size: 0.9em;
+  }
+</style>

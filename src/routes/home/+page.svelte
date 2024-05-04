@@ -1,18 +1,16 @@
 <script lang='ts'>
   import { redirect } from "@sveltejs/kit";
-  let destino: String
-  let fechaInicio: Date
-  let fechaFin: Date
+  let destination: String;
+  let startDate: Date;
+  let endDate: Date;
 
-  async function createViaje(event: SubmitEvent) {
-    //let fechaInicio2 = new Date(fechaInicio)
-    //let fechaFin2 = new Date(fechaFin)
+  async function createTrip(event: SubmitEvent) {
     try {
-      console.log(typeof(fechaInicio));
+      console.log(typeof(startDate));
       const response = await fetch("/home", {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({destino, fechaInicio, fechaFin})
+          body: JSON.stringify({destination, startDate, endDate})
         });
       if (!response.ok) {
         console.error("Could not log in")
@@ -27,30 +25,28 @@
     }
     window.location.href = '/home';
   }
-
-
 </script>
 
 <div class="newtrip">
-  <h1>Añadir Destino</h1>
-  <form on:submit|preventDefault={createViaje} method="POST">
+  <h1>Add Destination</h1>
+  <form on:submit|preventDefault={createTrip} method="POST">
     <div class="input-group">
-      <label for="destination">Ciudad de Destino:</label>
-      <input type="text" id="destination" bind:value={destino}>
+      <label for="destination">Destination City:</label>
+      <input type="text" id="destination" bind:value={destination}>
     </div>
     <div class="input-group">
-      <label for="departure-date">Fecha de Salida:</label>
-      <input type="date" id="departure-date" bind:value={fechaInicio}>
+      <label for="departure-date">Departure Date:</label>
+      <input type="date" id="departure-date" bind:value={startDate}>
     </div>
     <div class="input-group">
-      <label for="arrival-date">Fecha de Llegada:</label>
-      <input type="date" id="arrival-date" bind:value={fechaFin}>
+      <label for="arrival-date">Return Date:</label>
+      <input type="date" id="arrival-date" bind:value={endDate}>
     </div>
     <button type="submit">Add Trip</button>
   </form>
 </div>
 
-<!-- Menú de viajes -->
+<!-- Travel Menu -->
 <div class="trips-menu">
   <button class="trip-bubble">
     <p class="trip-info">New York</p>
@@ -70,8 +66,6 @@
     <p class="trip-info">2024-07-10</p>
   </button>
 </div>
-
-
 
 <style>
   /* Puedes agregar estilos adicionales según tus preferencias */
