@@ -24,7 +24,18 @@ model User {
   codigoEmpresa String
   preferencias Preferencia[]
   propuestasActivadas Boolean @default(true)
+  viajes Viaje[]
   }
+
+model Viaje {
+  id Int @id @default(autoincrement())
+  fechaInicio DateTime
+  fechaFin DateTime
+  origen String
+  destino String
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+}
 
 model Empresa {
   id Int @id @default(autoincrement())
