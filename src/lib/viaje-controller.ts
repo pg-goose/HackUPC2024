@@ -1,30 +1,30 @@
 import type { Viaje } from '@prisma/client';
 import prisma from "$lib/client"
-import { error, fail } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 
-interface ViajeInput {
-    destino: string
-    fechaInicio: string
-    fechaFin: string
+interface TripInput {
+    destination: string
+    startDate: string
+    endDate: string
 }
 
 
-class ViajeController {
+class TripController {
 
-    async viaje(id: number): Promise<Viaje | null> {
+    async trip(id: number): Promise<Viaje | null> {
         return prisma.viaje.findUnique({
             where: { id }
         })
     }
-    async viajes(): Promise<Viaje[] | null> {
+    async trips(): Promise<Viaje[] | null> {
         return prisma.viaje.findMany()
     }
-    async createViaje(validatedData: ViajeInput, userId: any): Promise<Viaje | null> {
+    async createTrip(validatedData: TripInput, userId: any): Promise<Viaje | null> {
         try {
             const newViaje = await prisma.viaje.create({ data: {
-                destino: validatedData.destino,
-                fechaInicio: validatedData.fechaInicio + "T00:00:00Z",
-                fechaFin: validatedData.fechaFin + "T00:00:00Z",
+                destino: validatedData.destination,
+                fechaInicio: validatedData.startDate + "T00:00:00Z",
+                fechaFin: validatedData.endDate + "T00:00:00Z",
                 user:{ connect: { id : userId }  } } })
             return newViaje
         } catch(err) {
@@ -34,5 +34,5 @@ class ViajeController {
     }
 }
 
-const viajeController = new ViajeController()
-export default viajeController
+const tripController = new TripController()
+export default tripController

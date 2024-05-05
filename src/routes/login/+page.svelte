@@ -1,6 +1,4 @@
 <script lang='ts'>
-    import { redirect } from "@sveltejs/kit";
-
   let email = "";
   let password = "";
   let hashPassword = "";

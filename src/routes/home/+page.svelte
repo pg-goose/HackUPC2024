@@ -1,5 +1,4 @@
 <script lang='ts'>
-  import { redirect } from "@sveltejs/kit";
   let destination: String;
   let startDate: Date;
   let endDate: Date;
@@ -13,7 +12,6 @@
           body: JSON.stringify({destination, startDate, endDate})
         });
       if (!response.ok) {
-        console.error("Could not log in")
         throw new Error(`HTTP status: ${response.status}`);
       }
       const data = await response.json();

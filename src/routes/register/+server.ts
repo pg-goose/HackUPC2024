@@ -4,13 +4,16 @@ import userController from '$lib/user-controller';
 import { z } from 'zod';
 
 const RegisterFormSchema = z.object({
+    companyKey: z.string(),
     email: z.string().email(),
-    nombre: z.string(),
-    apellido: z.string(),
-    segundoApellido: z.string().nullable(),
-    ciudadResidencia: z.string(),
-    codigoEmpresa: z.string(),
-    hashPassword: z.string(),
+    firstName: z.string(),
+    lastName: z.string(),
+    secondLastName: z.string().nullable(),
+    city: z.string(),
+    password: z.string(),
+    confirmPassword: z.string(),
+    isCoquette: z.boolean(),
+    selectedHobbies: z.array(z.string()),
 });
 
 export const POST: RequestHandler = async ({request, cookies}) => {

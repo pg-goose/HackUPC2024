@@ -4,13 +4,16 @@ import { error, fail } from '@sveltejs/kit';
 
 
 interface UserInput {
+    companyKey: string
     email: string
-    nombre: string
-    apellido: string
-    segundoApellido: string | null
-    ciudadResidencia: string
-    codigoEmpresa: string 
-    hashPassword: string
+    firstName: string
+    lastName: string
+    secondLastName: string
+    city: string
+    password: string
+    confirmPassword: string
+    isCoquette: boolean
+    selectedHobbies: string[]
 }
 
 interface LoginInput {

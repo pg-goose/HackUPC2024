@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { QT_ACCESSIBILITY } from "$env/static/private";
-
   let showCompanySection = true;
   let showUserDataSection = false;
   let showUserInterestsSection = false;
